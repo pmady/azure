@@ -1,0 +1,11 @@
+## Register Policy Insights Provider
+Register-AzureRmResourceProvider -ProviderNamespace “Microsoft.PolicyInsights"
+Create the Resource Group Variable
+$rg = Get-AzureRmResourceGroup -Name 'resourceGroupName'
+Create Policy Definition Variable
+$definition = Get-AzureRmPolicyDefinition | Where-Object { $_.Properties.DisplayName -eq 'Audit VMs that do not use
+managed disks' }
+Create the Policy
+New-AzureRmPolicyAssignment -Name 'audit-vm-manageddisks' -DisplayName 'Audit Virtual Machines without Managed Disks Assignment' -Scope $rg.ResourceId -PolicyDefinition $definition
+Remove the Policy
+Remove-AzureRmPolicyAssignment -Name 'audit-vm-manageddisks' -Scope '/subscriptions/subscriptionID/resourceGroups/resourceGroupName'
