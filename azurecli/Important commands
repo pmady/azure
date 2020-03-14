@@ -1,0 +1,6 @@
+New and helpful commands:
+
+Listing extensions: az extension list
+Installing an extension: az extension add --name extension
+Using interactive mode: az interactive
+Using the find AI: az find
